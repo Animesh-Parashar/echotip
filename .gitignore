@@ -1,0 +1,23 @@
+# Foundry
+contracts/cache/
+contracts/out/
+contracts/broadcast/*/31337/
+contracts/.env
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+build/
+.vercel
+
+# Env
+.env
+.env.local
+.env*.local
+
+# Misc
+.DS_Store
+*.log
+npm-debug.log*
+.pnpm-debug.log*
