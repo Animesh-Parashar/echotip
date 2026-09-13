@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Don't regenerate AGENTS.md/CLAUDE.md agent-rules files on dev/build.
+  agentRules: false,
   turbopack: {
     resolveAlias: {
       // RainbowKit's bundled Coinbase/Base Account connector pulls in
