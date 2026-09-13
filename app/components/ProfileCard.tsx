@@ -1,0 +1,46 @@
+import type { ResolvedProfile } from "./ProfileSearch";
+
+function shorten(address: string) {
+  return `${address.slice(0, 6)}…${address.slice(-4)}`;
+}
+
+export function ProfileCard({ profile }: { profile: ResolvedProfile }) {
+  const label = profile.ensName ?? shorten(profile.address);
+  const initials = label.slice(0, 2).toUpperCase();
+
+  return (
+    <div className="flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full bg-zinc-800">
+        {profile.avatar ? (
+          // eslint-disable-next-line @next/next/no-img-element -- ENS avatars come from arbitrary external hosts
+          <img
+            src={profile.avatar}
+            alt={label}
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center text-lg font-semibold text-zinc-500">
+            {initials}
+          </div>
+        )}
+      </div>
+      <div className="min-w-0">
+        <p className="truncate text-lg font-semibold">{label}</p>
+        <p className="truncate text-sm text-zinc-500">{shorten(profile.address)}</p>
+        {profile.description && (
+          <p className="mt-1 truncate text-sm text-zinc-300">{profile.description}</p>
+        )}
+        {profile.twitter && (
+          <a
+            href={`https://twitter.com/${profile.twitter}`}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-1 inline-block text-sm text-cyan-400 hover:underline"
+          >
+            @{profile.twitter}
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
