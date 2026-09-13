@@ -39,6 +39,11 @@ export function MessageWall({
   });
   const tips = data as readonly Tip[] | undefined;
 
+  if (error) {
+    // eslint-disable-next-line no-console
+    console.error("getTips error:", error);
+  }
+
   useEffect(() => {
     if (refreshKey > 0) refetch();
   }, [refreshKey, refetch]);
