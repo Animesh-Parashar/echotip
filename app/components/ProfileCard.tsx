@@ -11,8 +11,8 @@ export function ProfileCard({ profile }: { profile: ResolvedProfile }) {
     : profile.address.slice(2, 4).toUpperCase();
 
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/50 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-500/40 hover:shadow-[0_0_30px_-12px_rgba(34,211,238,0.5)]">
-      <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full bg-zinc-800 ring-2 ring-zinc-800">
+    <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/40 hover:shadow-[0_0_40px_-12px_rgba(34,211,238,0.5)]">
+      <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-white/10">
         {profile.avatar ? (
           // eslint-disable-next-line @next/next/no-img-element -- ENS avatars come from arbitrary external hosts
           <img
@@ -27,7 +27,7 @@ export function ProfileCard({ profile }: { profile: ResolvedProfile }) {
         )}
       </div>
       <div className="min-w-0">
-        <p className="truncate text-lg font-semibold">{label}</p>
+        <p className="truncate text-xl font-bold">{label}</p>
         <p className="truncate text-sm text-zinc-500">{shorten(profile.address)}</p>
         {profile.description && (
           <p className="mt-1 truncate text-sm text-zinc-300">{profile.description}</p>

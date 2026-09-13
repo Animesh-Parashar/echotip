@@ -6,7 +6,7 @@ Built for the **ENS track** (Best Use of ENS) — the entire UX depends on ENS n
 
 ## What it does
 
-1. Type an ENS name (e.g. `vitalik.eth`) or a raw address into the search box.
+1. Type an ENS name (e.g. `vitalik.eth`) or a raw address into the search box — it auto-resolves ~400ms after you stop typing a complete-looking name (no need to hit Search), or click one of the quick-pick example names.
 2. EchoTip resolves it against **Ethereum mainnet** via viem's ENS actions — address, avatar, `description` text record, and `com.twitter` handle.
 3. Send them a small ETH tip with a public message. The transaction goes to a lightweight smart contract on **Sepolia** testnet.
 4. Every tip is stored on-chain and rendered as a live "wall" under the recipient's profile — each sender is reverse-resolved to their own ENS name too, so the wall reads as `alice.eth tipped bob.eth`, not addresses talking to addresses.
@@ -29,6 +29,10 @@ Built for the **ENS track** (Best Use of ENS) — the entire UX depends on ENS n
 - **Example transaction:** [`0x5988d0b68a684f357d6cafe5884ae9e536db8be950a13f9d84e13cfbdd9e4835`](https://sepolia.etherscan.io/tx/0x5988d0b68a684f357d6cafe5884ae9e536db8be950a13f9d84e13cfbdd9e4835) — a real tip sent while QA-ing the deploy.
 
 ## Screenshots
+
+**Landing page — live on-chain tip count, quick-pick ENS names, and a search bar that auto-resolves once you finish typing a name (no click needed):**
+
+![EchoTip landing page](docs/screenshots/hero.png)
 
 **Searching an ENS name resolves a live profile from mainnet:**
 

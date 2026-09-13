@@ -75,7 +75,7 @@ export function TipForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-900/50 p-5 transition-colors duration-300 hover:border-zinc-700"
+      className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-colors duration-300 hover:border-white/20"
     >
       <label className="text-sm font-medium text-zinc-300">
         Message for {recipientLabel}
@@ -85,7 +85,7 @@ export function TipForm({
         onChange={(e) => setMessage(e.target.value.slice(0, MAX_MESSAGE_LENGTH))}
         rows={3}
         placeholder="Thanks for shipping ENS! 🎉"
-        className="resize-none rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 transition-shadow focus:outline-none focus:ring-2 focus:ring-cyan-500"
+        className="resize-none rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 transition-shadow focus:border-cyan-400/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/40"
       />
       <div className="flex items-center justify-between text-xs">
         <span className={nearLimit ? "text-amber-400" : "text-zinc-500"}>
@@ -101,7 +101,7 @@ export function TipForm({
           type="number"
           min="0"
           step="0.001"
-          className="w-28 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 transition-shadow focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          className="w-28 rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm text-zinc-100 transition-shadow focus:border-cyan-400/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/40"
         />
         <div className="flex gap-1.5">
           {AMOUNT_PRESETS.map((preset) => (
@@ -111,8 +111,8 @@ export function TipForm({
               onClick={() => setAmount(preset)}
               className={`rounded-full border px-2.5 py-1 text-xs transition-colors ${
                 amount === preset
-                  ? "border-cyan-500 bg-cyan-500/10 text-cyan-300"
-                  : "border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200"
+                  ? "border-cyan-400/60 bg-cyan-500/10 text-cyan-300"
+                  : "border-white/10 text-zinc-400 hover:border-white/25 hover:text-zinc-200"
               }`}
             >
               {preset}
@@ -124,7 +124,7 @@ export function TipForm({
       <button
         type="submit"
         disabled={!isConnected || busy || !message.trim()}
-        className="rounded-lg bg-cyan-500 px-4 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-150 hover:bg-cyan-400 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100"
+        className="rounded-xl bg-gradient-to-r from-cyan-400 to-fuchsia-500 px-4 py-3 text-sm font-semibold text-zinc-950 shadow-lg shadow-cyan-500/20 transition-all duration-150 hover:shadow-cyan-500/40 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:active:scale-100"
       >
         <span className="inline-flex items-center justify-center gap-2">
           {busy && (

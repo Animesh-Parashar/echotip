@@ -31,7 +31,7 @@ export function MessageWall({
   recipientAddress: `0x${string}`;
   refreshKey: number;
 }) {
-  const { data, isLoading, refetch } = useReadContract({
+  const { data, isLoading, error, refetch } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: TIP_BOARD_ABI,
     functionName: "getTips",
@@ -75,8 +75,8 @@ export function MessageWall({
 
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="text-lg font-semibold">
-        Tips received {tips ? `(${tips.length})` : ""}
+      <h2 className="flex items-center gap-2 text-lg font-semibold">
+        <span>🧾</span> Tips received {tips ? `(${tips.length})` : ""}
       </h2>
 
       {isLoading && (
@@ -84,13 +84,18 @@ export function MessageWall({
           {[0, 1].map((i) => (
             <div
               key={i}
-              className="h-16 animate-pulse rounded-lg border border-zinc-800 bg-zinc-900/50"
+              className="h-16 animate-pulse rounded-xl border border-white/10 bg-white/5"
             />
           ))}
         </div>
       )}
-      {!isLoading && sorted.length === 0 && (
-        <p className="rounded-lg border border-dashed border-zinc-800 px-4 py-6 text-center text-sm text-zinc-500">
+      {!isLoading && error && (
+        <p className="rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-400">
+          Couldn't load tips: {error.message.length > 140 ? "check the contract address and network." : error.message}
+        </p>
+      )}
+      {!isLoading && !error && sorted.length === 0 && (
+        <p className="rounded-xl border border-dashed border-white/15 px-4 py-6 text-center text-sm text-zinc-500">
           No tips yet — be the first to send one.
         </p>
       )}
@@ -100,7 +105,7 @@ export function MessageWall({
           <li
             key={i}
             style={{ animationDelay: `${Math.min(i, 8) * 60}ms` }}
-            className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 transition-colors duration-200 [animation:fade-in-up_0.35s_ease-out_both] hover:border-zinc-700"
+            className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl transition-colors duration-200 [animation:fade-in-up_0.35s_ease-out_both] hover:border-cyan-400/30"
           >
             <div className="flex items-center justify-between text-sm">
               <span className="font-medium text-cyan-400">
