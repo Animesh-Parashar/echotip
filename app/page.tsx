@@ -3,6 +3,7 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useState } from "react";
 import { Hero } from "./components/Hero";
+import { Logo } from "./components/Logo";
 import { MessageWall } from "./components/MessageWall";
 import { ProfileCard } from "./components/ProfileCard";
 import { ProfileSearch, type ResolvedProfile } from "./components/ProfileSearch";
@@ -26,16 +27,12 @@ export default function Home() {
 
   return (
     <>
-      <header className="sticky top-0 z-20 border-b border-white/5 bg-zinc-950/70 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-4 px-4 py-4">
+      <header className="sticky top-0 z-20 border-b border-white/5 bg-[#0a1420]/80 backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 to-fuchsia-500 text-lg shadow-lg shadow-cyan-500/20">
-              📣
-            </div>
+            <Logo />
             <div>
-              <h1 className="bg-gradient-to-r from-cyan-300 via-cyan-200 to-fuchsia-300 bg-clip-text text-xl font-extrabold text-transparent">
-                EchoTip
-              </h1>
+              <h1 className="text-xl font-extrabold text-zinc-50">EchoTip</h1>
               <p className="hidden text-xs text-zinc-500 sm:block">
                 On-chain thank-you notes for ENS names.
               </p>

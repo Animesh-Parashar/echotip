@@ -14,7 +14,7 @@ export type ResolvedProfile = {
 };
 
 // A name that's plausibly finished typing (has a dot + 2+ letter TLD, e.g.
-// "vitalik.eth") — used to auto-resolve without waiting for form submit.
+// "vitalik.eth"), used to auto-resolve without waiting for form submit.
 const LOOKS_COMPLETE = /\.[a-z]{2,}$/i;
 
 export function ProfileSearch({
@@ -82,7 +82,7 @@ export function ProfileSearch({
   );
 
   // Auto-resolve shortly after the user finishes typing a complete-looking
-  // name or address — no need to hit Search.
+  // name or address, no need to hit Search.
   useEffect(() => {
     const trimmed = value.trim();
     if (!isAddress(trimmed) && !LOOKS_COMPLETE.test(trimmed)) return;
@@ -103,7 +103,7 @@ export function ProfileSearch({
             aria-hidden
             viewBox="0 0 20 20"
             fill="none"
-            className="pointer-events-none absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-zinc-500 transition-colors group-focus-within:text-cyan-400"
+            className="pointer-events-none absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-zinc-500 transition-colors group-focus-within:text-gold"
           >
             <path
               d="M9 16A7 7 0 1 0 9 2a7 7 0 0 0 0 14ZM18 18l-3.8-3.8"
@@ -117,16 +117,16 @@ export function ProfileSearch({
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="Search an ENS name or address… (e.g. vitalik.eth)"
-            className="w-full rounded-xl border border-white/10 bg-white/5 py-4 pr-4 pl-11 text-base text-zinc-100 shadow-inner shadow-black/20 backdrop-blur-xl transition-all placeholder:text-zinc-500 focus:border-cyan-400/60 focus:bg-white/[0.07] focus:outline-none focus:ring-4 focus:ring-cyan-500/20"
+            className="w-full rounded-xl border border-white/10 bg-white/5 py-4 pr-4 pl-11 text-base text-zinc-100 shadow-inner shadow-black/20 transition-all placeholder:text-zinc-500 focus:border-gold/60 focus:bg-white/[0.07] focus:outline-none focus:ring-4 focus:ring-gold/15"
           />
           {loading && (
-            <span className="absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2 animate-spin rounded-full border-2 border-cyan-500/30 border-t-cyan-400" />
+            <span className="absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2 animate-spin rounded-full border-2 border-gold/30 border-t-gold" />
           )}
         </div>
         <button
           type="submit"
           disabled={loading}
-          className="shrink-0 rounded-xl bg-gradient-to-r from-cyan-400 to-fuchsia-500 px-6 py-4 text-sm font-semibold text-zinc-950 shadow-lg shadow-cyan-500/20 transition-all duration-150 hover:shadow-cyan-500/40 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50"
+          className="shrink-0 rounded-xl bg-gold px-6 py-4 text-sm font-semibold text-[#0a1420] shadow-lg shadow-gold/10 transition-all duration-150 hover:bg-gold-light active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {loading ? "Resolving…" : "Search"}
         </button>

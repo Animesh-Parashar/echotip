@@ -1,15 +1,15 @@
 # EchoTip
 
-**On-chain thank-you notes for ENS names.** Type in anyone's ENS name, see their resolved profile (avatar, bio, Twitter), and leave them a public on-chain tip + message — no more copy-pasting 0x addresses.
+**On-chain thank-you notes for ENS names.** Type in anyone's ENS name, see their resolved profile (avatar, bio, Twitter), and leave them a public on-chain tip + message: no more copy-pasting 0x addresses.
 
-Built for the **ENS track** (Best Use of ENS) — the entire UX depends on ENS name resolution: searching, resolving, and displaying a profile is impossible without it.
+Built for the **ENS track** (Best Use of ENS): the entire UX depends on ENS name resolution, since searching, resolving, and displaying a profile is impossible without it.
 
 ## What it does
 
-1. Type an ENS name (e.g. `vitalik.eth`) or a raw address into the search box — it auto-resolves ~400ms after you stop typing a complete-looking name (no need to hit Search), or click one of the quick-pick example names.
-2. EchoTip resolves it against **Ethereum mainnet** via viem's ENS actions — address, avatar, `description` text record, and `com.twitter` handle.
+1. Type an ENS name (e.g. `vitalik.eth`) or a raw address into the search box. It auto-resolves ~400ms after you stop typing a complete-looking name (no need to hit Search), or click one of the quick-pick example names.
+2. EchoTip resolves it against **Ethereum mainnet** via viem's ENS actions: address, avatar, `description` text record, and `com.twitter` handle.
 3. Send them a small ETH tip with a public message. The transaction goes to a lightweight smart contract on **Sepolia** testnet.
-4. Every tip is stored on-chain and rendered as a live "wall" under the recipient's profile — each sender is reverse-resolved to their own ENS name too, so the wall reads as `alice.eth tipped bob.eth`, not addresses talking to addresses.
+4. Every tip is stored on-chain and rendered as a live "wall" under the recipient's profile. Each sender is reverse-resolved to their own ENS name too, so the wall reads as `alice.eth tipped bob.eth`, not addresses talking to addresses.
 
 ## Tech stack
 
@@ -25,12 +25,12 @@ Built for the **ENS track** (Best Use of ENS) — the entire UX depends on ENS n
 ## Deployed contract
 
 - **Address (Sepolia):** [`0x4b7cCF136f9f96c471E04bDAE987119430f99C40`](https://sepolia.etherscan.io/address/0x4b7ccf136f9f96c471e04bdae987119430f99c40)
-- **Verified source:** Etherscan verification passed — see the link above (Code tab).
-- **Example transaction:** [`0x5988d0b68a684f357d6cafe5884ae9e536db8be950a13f9d84e13cfbdd9e4835`](https://sepolia.etherscan.io/tx/0x5988d0b68a684f357d6cafe5884ae9e536db8be950a13f9d84e13cfbdd9e4835) — a real tip sent while QA-ing the deploy.
+- **Verified source:** Etherscan verification passed, see the link above (Code tab).
+- **Example transaction:** [`0x5988d0b68a684f357d6cafe5884ae9e536db8be950a13f9d84e13cfbdd9e4835`](https://sepolia.etherscan.io/tx/0x5988d0b68a684f357d6cafe5884ae9e536db8be950a13f9d84e13cfbdd9e4835), a real tip sent while QA-ing the deploy.
 
 ## Screenshots
 
-**Landing page — live on-chain tip count, quick-pick ENS names, and a search bar that auto-resolves once you finish typing a name (no click needed):**
+**Landing page: live on-chain tip count, quick-pick ENS names, and a search bar that auto-resolves once you finish typing a name (no click needed):**
 
 ![EchoTip landing page](docs/screenshots/hero.png)
 
@@ -77,7 +77,7 @@ cp .env.example .env.local   # fill in NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID (fre
 npm run dev
 ```
 
-The contract address and a public mainnet RPC are already filled in `.env.example` and default in code, so the app works out of the box for reading — you only need a WalletConnect project ID to connect a wallet and send tips.
+The contract address and a public mainnet RPC are already filled in `.env.example` and default in code, so the app works out of the box for reading. You only need a WalletConnect project ID to connect a wallet and send tips.
 
 ### Contracts (Foundry)
 
@@ -97,7 +97,7 @@ Tested with Foundry (`contracts/test/TipBoard.t.sol`): sending a tip emits the e
 
 ## Why ENS
 
-The core interaction — searching, resolving, and displaying a profile — is impossible without ENS. It's not a bolt-on integration; ENS name resolution *is* the product's UX. Reverse-resolving tip senders back to their own ENS names is what turns the tip wall from a list of addresses into a wall of names.
+The core interaction, searching, resolving, and displaying a profile, is impossible without ENS. It's not a bolt-on integration; ENS name resolution *is* the product's UX. Reverse-resolving tip senders back to their own ENS names is what turns the tip wall from a list of addresses into a wall of names.
 
 ## AI tool usage disclosure
 

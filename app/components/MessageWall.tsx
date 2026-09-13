@@ -96,7 +96,7 @@ export function MessageWall({
       )}
       {!isLoading && !error && sorted.length === 0 && (
         <p className="rounded-xl border border-dashed border-white/15 px-4 py-6 text-center text-sm text-zinc-500">
-          No tips yet — be the first to send one.
+          No tips yet, be the first to send one.
         </p>
       )}
 
@@ -105,10 +105,10 @@ export function MessageWall({
           <li
             key={i}
             style={{ animationDelay: `${Math.min(i, 8) * 60}ms` }}
-            className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl transition-colors duration-200 [animation:fade-in-up_0.35s_ease-out_both] hover:border-cyan-400/30"
+            className="rounded-xl border border-white/10 bg-white/5 p-4 transition-colors duration-200 [animation:fade-in-up_0.35s_ease-out_both] hover:border-gold/30"
           >
             <div className="flex items-center justify-between text-sm">
-              <span className="font-medium text-cyan-400">
+              <span className="font-medium text-gold-light">
                 {nameCache[tip.sender] ?? shorten(tip.sender)}
               </span>
               <span className="text-zinc-500">{timeAgo(tip.timestamp)}</span>

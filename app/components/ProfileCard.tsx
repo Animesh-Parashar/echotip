@@ -11,7 +11,7 @@ export function ProfileCard({ profile }: { profile: ResolvedProfile }) {
     : profile.address.slice(2, 4).toUpperCase();
 
   return (
-    <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/40 hover:shadow-[0_0_40px_-12px_rgba(34,211,238,0.5)]">
+    <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/30">
       <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-white/10">
         {profile.avatar ? (
           // eslint-disable-next-line @next/next/no-img-element -- ENS avatars come from arbitrary external hosts
@@ -21,7 +21,7 @@ export function ProfileCard({ profile }: { profile: ResolvedProfile }) {
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500/20 to-fuchsia-500/20 text-lg font-semibold text-cyan-300">
+          <div className="flex h-full w-full items-center justify-center bg-navy-card text-lg font-semibold text-gold">
             {initials}
           </div>
         )}
@@ -37,7 +37,7 @@ export function ProfileCard({ profile }: { profile: ResolvedProfile }) {
             href={`https://twitter.com/${profile.twitter}`}
             target="_blank"
             rel="noreferrer"
-            className="mt-1 inline-block text-sm text-cyan-400 hover:underline"
+            className="mt-1 inline-block text-sm text-gold-light hover:underline"
           >
             @{profile.twitter}
           </a>
