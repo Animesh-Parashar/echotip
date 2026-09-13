@@ -1,5 +1,5 @@
 export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ??
-  "0x0000000000000000000000000000000000000000") as `0x${string}`;
+  "0x4b7cCF136f9f96c471E04bDAE987119430f99C40") as `0x${string}`;
 
 export const TIP_BOARD_ABI = [
   {

@@ -46,11 +46,11 @@ We used Hardhat for contract development, testing, and deployment, and Vercel fo
 
 ## Required Links (fill in before submitting)
 
-- [ ] **GitHub repo (must be public):** [FILL IN]
+- [x] **GitHub repo (must be public):** https://github.com/Animesh-Parashar/echotip *(confirm repo visibility is set to Public in GitHub settings)*
 - [ ] **Demo video (YouTube, unlisted is fine):** [FILL IN]
 - [ ] **Live app URL (Vercel):** [FILL IN]
-- [ ] **Deployed contract address (Sepolia):** [FILL IN]
-- [ ] **Etherscan link to the contract:** [FILL IN] *(optional but adds credibility for judges)*
+- [x] **Deployed contract address (Sepolia):** `0x4b7cCF136f9f96c471E04bDAE987119430f99C40`
+- [x] **Etherscan link to the contract:** https://sepolia.etherscan.io/address/0x4b7ccf136f9f96c471e04bdae987119430f99c40 (verified source)
 
 ---
 
