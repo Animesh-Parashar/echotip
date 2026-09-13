@@ -6,11 +6,13 @@ function shorten(address: string) {
 
 export function ProfileCard({ profile }: { profile: ResolvedProfile }) {
   const label = profile.ensName ?? shorten(profile.address);
-  const initials = label.slice(0, 2).toUpperCase();
+  const initials = profile.ensName
+    ? profile.ensName.slice(0, 2).toUpperCase()
+    : profile.address.slice(2, 4).toUpperCase();
 
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-      <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full bg-zinc-800">
+    <div className="flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/50 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-500/40 hover:shadow-[0_0_30px_-12px_rgba(34,211,238,0.5)]">
+      <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full bg-zinc-800 ring-2 ring-zinc-800">
         {profile.avatar ? (
           // eslint-disable-next-line @next/next/no-img-element -- ENS avatars come from arbitrary external hosts
           <img
@@ -19,7 +21,7 @@ export function ProfileCard({ profile }: { profile: ResolvedProfile }) {
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-lg font-semibold text-zinc-500">
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500/20 to-fuchsia-500/20 text-lg font-semibold text-cyan-300">
             {initials}
           </div>
         )}

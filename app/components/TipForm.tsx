@@ -10,6 +10,7 @@ import {
 import { CONTRACT_ADDRESS, TIP_BOARD_ABI } from "../lib/contract";
 
 const MAX_MESSAGE_LENGTH = 280;
+const AMOUNT_PRESETS = ["0.001", "0.005", "0.01"];
 
 export function TipForm({
   recipientAddress,
@@ -69,11 +70,12 @@ export function TipForm({
 
   const error = writeError ?? receiptError;
   const busy = isPending || isConfirming;
+  const nearLimit = message.length > MAX_MESSAGE_LENGTH - 30;
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-900/50 p-5"
+      className="flex flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-900/50 p-5 transition-colors duration-300 hover:border-zinc-700"
     >
       <label className="text-sm font-medium text-zinc-300">
         Message for {recipientLabel}
@@ -83,15 +85,15 @@ export function TipForm({
         onChange={(e) => setMessage(e.target.value.slice(0, MAX_MESSAGE_LENGTH))}
         rows={3}
         placeholder="Thanks for shipping ENS! 🎉"
-        className="resize-none rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+        className="resize-none rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 transition-shadow focus:outline-none focus:ring-2 focus:ring-cyan-500"
       />
-      <div className="flex items-center justify-between text-xs text-zinc-500">
-        <span>
+      <div className="flex items-center justify-between text-xs">
+        <span className={nearLimit ? "text-amber-400" : "text-zinc-500"}>
           {message.length}/{MAX_MESSAGE_LENGTH}
         </span>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <label className="text-sm font-medium text-zinc-300">Amount (ETH)</label>
         <input
           value={amount}
@@ -99,31 +101,52 @@ export function TipForm({
           type="number"
           min="0"
           step="0.001"
-          className="w-28 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          className="w-28 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 transition-shadow focus:outline-none focus:ring-2 focus:ring-cyan-500"
         />
+        <div className="flex gap-1.5">
+          {AMOUNT_PRESETS.map((preset) => (
+            <button
+              key={preset}
+              type="button"
+              onClick={() => setAmount(preset)}
+              className={`rounded-full border px-2.5 py-1 text-xs transition-colors ${
+                amount === preset
+                  ? "border-cyan-500 bg-cyan-500/10 text-cyan-300"
+                  : "border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200"
+              }`}
+            >
+              {preset}
+            </button>
+          ))}
+        </div>
       </div>
 
       <button
         type="submit"
         disabled={!isConnected || busy || !message.trim()}
-        className="rounded-lg bg-cyan-500 px-4 py-2.5 text-sm font-medium text-zinc-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded-lg bg-cyan-500 px-4 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-150 hover:bg-cyan-400 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100"
       >
-        {!isConnected
-          ? "Connect wallet to tip"
-          : isPending
-            ? "Confirm in wallet…"
-            : isConfirming
-              ? "Sending tip…"
-              : "Send Tip"}
+        <span className="inline-flex items-center justify-center gap-2">
+          {busy && (
+            <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-zinc-950/30 border-t-zinc-950" />
+          )}
+          {!isConnected
+            ? "Connect wallet to tip"
+            : isPending
+              ? "Confirm in wallet…"
+              : isConfirming
+                ? "Sending tip…"
+                : "Send Tip"}
+        </span>
       </button>
 
       {isConfirmed && (
-        <p className="text-sm text-green-400">
-          Tip sent! It should appear on the wall below.
+        <p className="text-sm text-green-400 [animation:fade-in-up_0.3s_ease-out_both]">
+          ✓ Tip sent! It should appear on the wall below.
         </p>
       )}
       {error && (
-        <p className="text-sm text-red-400">
+        <p className="text-sm text-red-400 [animation:fade-in-up_0.3s_ease-out_both]">
           {error.message.length > 160
             ? "Transaction failed. Please try again."
             : error.message}

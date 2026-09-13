@@ -79,9 +79,18 @@ export function MessageWall({
         Tips received {tips ? `(${tips.length})` : ""}
       </h2>
 
-      {isLoading && <p className="text-sm text-zinc-500">Loading tips…</p>}
+      {isLoading && (
+        <div className="flex flex-col gap-2">
+          {[0, 1].map((i) => (
+            <div
+              key={i}
+              className="h-16 animate-pulse rounded-lg border border-zinc-800 bg-zinc-900/50"
+            />
+          ))}
+        </div>
+      )}
       {!isLoading && sorted.length === 0 && (
-        <p className="text-sm text-zinc-500">
+        <p className="rounded-lg border border-dashed border-zinc-800 px-4 py-6 text-center text-sm text-zinc-500">
           No tips yet — be the first to send one.
         </p>
       )}
@@ -90,7 +99,8 @@ export function MessageWall({
         {sorted.map((tip, i) => (
           <li
             key={i}
-            className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4"
+            style={{ animationDelay: `${Math.min(i, 8) * 60}ms` }}
+            className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 transition-colors duration-200 [animation:fade-in-up_0.35s_ease-out_both] hover:border-zinc-700"
           >
             <div className="flex items-center justify-between text-sm">
               <span className="font-medium text-cyan-400">
